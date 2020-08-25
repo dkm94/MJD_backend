@@ -1,21 +1,19 @@
 const express = require('express');
-const router = express.Router();
+const accountRoutes = express.Router();
 
-const User = require("../Schemas/user");
+const accountCtrl = require("../Controllers/account");
+
+// accountRoutes.get('/', (req, res, next) => {
+//     res.send("Hello world")
+// })
+
+
 
 //Create new account
-router.post('/', (req, res, next) => {
-    const user = new User ({
-        email: req.body.email,
-        password: req.body.email
-    });
-    user.save()
-        .then(() => req.status(200).json({ message: "Nouvel utilisateur créé avec succès."}))
-        .catch(err => res.status(400).json({ message: "Echec de l'opération."}))
-});
+accountRoutes.post('/new', accountCtrl.createAccount);
 
 // Edit account 
-router.put('/:id', (req, res, next) => {
+accountRoutes.put('/:id', (req, res, next) => {
   
     User.updateOne(
         {_id: req.params.id}, { password: req.body.password, _id: req.params.id})
@@ -24,11 +22,17 @@ router.put('/:id', (req, res, next) => {
 });
 
 // Delete account
-router.delete('/:id', (req, res, next) => {
+accountRoutes.delete('/:id', (req, res, next) => {
   
     User.deleteOne({_id: req.params.id})
         .then(() => res.status(200).json({ message: "Votre compte a été supprimé."}))
         .catch(err => res.status(400).json({ err }))
 });
+
+accountRoutes.get('/', (req, res, next) => {
+    User.find()
+        .then(() => res.status(200).json(users))
+        .catch(err => res.status(400).json({ err }))
+})
         
-module.exports = router;
+module.exports = accountRoutes;

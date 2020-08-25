@@ -4,19 +4,19 @@ const Schema = mongoose.Schema;
 let userSchema = new mongoose.Schema({
 
     email: {
-        type: 'string',
+        type: String,
         required: 'Your email is required',
         unique: true
     },
     password: {
-        type: 'string',
+        type: String,
         required: 'The password is required'
     },
     mydashboardID: {
         type: Schema.Types.ObjectId, 
-        ref: 'myDashboard'
+        ref: 'MyDashboard'
     }
 
 });
 
-module.exports = mongoose.model('user', userSchema);
+module.exports = mongoose.model('User', userSchema);

@@ -11,10 +11,6 @@ let myProjects = new mongoose.Schema({
     },
     media: {
         type: String
-    },
-    userID: {
-        type: Schema.Types.ObjectId, 
-        ref: 'user'
     }
 
 });

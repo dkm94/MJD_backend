@@ -12,14 +12,20 @@ let myProfileSchema = new mongoose.Schema({
         required: 'Please fill in the position'
     },
     contract: {
-        type: Number
+        type: String
     },
     time: {
         type: Number
     },
-    // availability: {
+    availability: {
+        value1: {
+            type: String
+        },
+        value2: {
+            type: Date
+        }
 
-    // }
+    },
     mobility: [{
         type: String
     }],
@@ -31,12 +37,8 @@ let myProfileSchema = new mongoose.Schema({
     },
     resume: {
         type: String
-    },
-    userID: {
-        type: Schema.Types.ObjectId, 
-        ref: 'user'
     }
 
 });
 
-module.exports = mongoose.model('myProfile', myProfileSchema);
+module.exports = mongoose.model('MyProfile', myProfileSchema);

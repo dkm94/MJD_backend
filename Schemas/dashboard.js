@@ -5,21 +5,20 @@ let myDashboardSchema = new mongoose.Schema({
 
     myProfile: {
         type: Schema.Types.ObjectId, 
-        ref: 'myProfile'
+        ref: 'MyProfile'
     },
     mySkills: {
         type: Schema.Types.ObjectId, 
-        ref: 'mySkills'
+        ref: 'MySkills'
     },
     myProjects: [{
         type: Schema.Types.ObjectId, 
-        ref: 'myProjects'
+        ref: 'MyProjects'
     }],
     userID: {
         type: Schema.Types.ObjectId, 
-        ref: 'user'
+        ref: 'User'
     }
-
 });
 
-module.exports = mongoose.model('myDashboard', myDashboardSchema);
+module.exports = mongoose.model('MyDashboard', myDashboardSchema);
