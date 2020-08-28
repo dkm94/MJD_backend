@@ -3,7 +3,11 @@ app = express(),
 port = process.env.PORT || 3000,
 
 bodyParser = require('body-parser'),
-mongoose = require('mongoose');
+mongoose = require('mongoose'),
+bearerToken = require('express-bearer-token');
+require('dotenv').config();
+
+app.use(bearerToken());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));

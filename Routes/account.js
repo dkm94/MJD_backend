@@ -1,16 +1,17 @@
 const express = require('express');
 const accountRoutes = express.Router();
 
+const authCtrl = require("../Controllers/auth");
 const accountCtrl = require("../Controllers/account");
 
-// accountRoutes.get('/', (req, res, next) => {
-//     res.send("Hello world")
-// })
+const verification = require("../middlewares/auth");
 
 
 
-//Create new account
-accountRoutes.post('/new', accountCtrl.createAccount);
+//Authentification
+accountRoutes.post('/register', authCtrl.register);
+accountRoutes.post('/login', authCtrl.login);
+accountRoutes.put('/edit', verification, accountCtrl.editAccount);
 
 // Edit account 
 accountRoutes.put('/:id', (req, res, next) => {
