@@ -1,24 +1,40 @@
-const User = require("../Schemas/user");
+const User = require("../Schemas/user"),
+Dashboard = require("../Schemas/dashboard"),
+MyProfile = require("../Schemas/dashboard/myProfile"),
+MySkills = require("../Schemas/dashboard/mySkills"),
+MyProjects = require("../Schemas/dashboard/myProjects");
+
+const dashboardRoutes = require("../Routes/dashboard");
+
 const bcrypt = require('bcrypt'),
 jwt = require('jsonwebtoken'),
 jwt_secret = process.env.JWT_SECRET_KEY;
 
+
 exports.register = (req, res, next) => {
-    delete req.body._id;
     let hash = bcrypt.hashSync(req.body.password, 10);
     const user = new User ({
         // ...req.body
         email: req.body.email,
-        password: hash,
-        dashboard: null
+        password: hash
     });
     console.log(user)
     user.save()
-        .then(() => res.status(201).json(user))
+        .then(user => {
+            if(user) {
+                const dashboard = new Dashboard ({
+                    userID: user._id
+                })
+                console.log(dashboard)
+                dashboard.save()
+                    .then(dashboard => res.status(200).json(dashboard))
+                    .catch(err => res.status(400).json({ err: "Erreur création dashboard." }))
+            } else 
+                res.status(400).json({ err: "Erreur création compte."})
+        })
         .catch(err => { 
-            res.status(400).json(err);
-            console.log(err)}
-        )
+            res.status(400).json({err: "Erreur création compte."});
+        })
 };
 
 exports.login = (req, res, next) => {

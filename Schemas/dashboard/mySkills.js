@@ -8,7 +8,11 @@ let mySkillsSchema = new mongoose.Schema({
     }],
     keywords: [{
         type: String
-    }]
+    }],
+    userID: {
+        type: Schema.Types.ObjectId, 
+        ref: 'User'
+    }
 
 });
 

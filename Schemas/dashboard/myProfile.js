@@ -37,6 +37,10 @@ let myProfileSchema = new mongoose.Schema({
     },
     resume: {
         type: String
+    },
+    userID: {
+        type: Schema.Types.ObjectId, 
+        ref: 'User'
     }
 
 });
