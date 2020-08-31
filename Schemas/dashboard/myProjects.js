@@ -12,9 +12,9 @@ let myProjects = new mongoose.Schema({
     media: {
         type: String
     },
-    userID: {
+    dashboardID: {
         type: Schema.Types.ObjectId, 
-        ref: 'User'
+        ref: 'Dashboard'
     }
 
 });

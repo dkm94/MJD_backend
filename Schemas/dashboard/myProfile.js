@@ -4,12 +4,10 @@ const Schema = mongoose.Schema;
 let myProfileSchema = new mongoose.Schema({
 
     name: {
-        type: String,
-        required: 'Your name is required'
+        type: String
     },
     job: {
-        type: String,
-        required: 'Please fill in the position'
+        type: String
     },
     contract: {
         type: String
@@ -38,9 +36,9 @@ let myProfileSchema = new mongoose.Schema({
     resume: {
         type: String
     },
-    userID: {
+    dashboardID: {
         type: Schema.Types.ObjectId, 
-        ref: 'User'
+        ref: 'Dashboard'
     }
 
 });

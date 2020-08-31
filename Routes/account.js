@@ -8,7 +8,7 @@ const verification = require("../middlewares/auth");
 
 
 // Afficher compte
-accountRoutes.get('/myaccount/:id', accountCtrl.myaccount)
+accountRoutes.get('/myaccount/:id', verification, accountCtrl.myaccount)
 
 //Authentification
 accountRoutes.post('/register', authCtrl.register);

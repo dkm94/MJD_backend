@@ -9,9 +9,9 @@ let mySkillsSchema = new mongoose.Schema({
     keywords: [{
         type: String
     }],
-    userID: {
+    dashboardID: {
         type: Schema.Types.ObjectId, 
-        ref: 'User'
+        ref: 'Dashboard'
     }
 
 });

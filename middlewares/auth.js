@@ -6,10 +6,14 @@ module.exports = (req, res, next) => {
         const token = req.headers.authorization.split(" ")[1];
         const decodedToken = jwt.verify(token, jwt_secret);
         const userID = decodedToken.userID;
+        const dashboardID = decodedToken.dashboardID;
         if (req.body.userID && req.body.userID !== userID) {
             throw "User ID invalide";
         } else {
-            next();
+            if(req.body.dashboardID && req.body.dashboardID !== dashboardID) {
+                throw "Erreur ID dashbord";
+            } else
+                next();
         }
     } catch (error) {
         res.status(401).json({ error : error | "Requête non authentifée."})

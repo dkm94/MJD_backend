@@ -7,8 +7,14 @@ const updateDashboard = require("../middlewares/updateDashboard");
 const verification = require("../middlewares/auth");
 
 dashboardRoutes.get('/myProfile/:id', verification, dashboardCtrl.myprofile);
+dashboardRoutes.get('/mySkills/:id', verification, dashboardCtrl.myskills);
+dashboardRoutes.get('/myProjects/:id', verification, dashboardCtrl.myprojects);
 
-dashboardRoutes.put('/updateProfile/:id', verification, dashboardCtrl.updatemyprofile, updateDashboard);
+dashboardRoutes.post('/createProfile/:id', verification, dashboardCtrl.createMyProfile);
+dashboardRoutes.post('/createSkills/:id', verification, dashboardCtrl.createMySkills);
+dashboardRoutes.post('/newProject/:id', verification, dashboardCtrl.newProject);
+
+dashboardRoutes.put('/updateProfile/:id', verification, dashboardCtrl.updatemyprofile);
 dashboardRoutes.put('/updateSkills/:id', verification, dashboardCtrl.updatemyskills, updateDashboard);
 dashboardRoutes.put('/updateProject/:id', verification, dashboardCtrl.updatemyproject, updateDashboard);
 
