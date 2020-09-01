@@ -3,17 +3,27 @@ const Schema = mongoose.Schema;
 
 let myDashboardSchema = new mongoose.Schema({
 
-    myProfile: {
-        type: Schema.Types.ObjectId, 
-        ref: 'MyProfile'
+    name: String,
+    job: String,
+    contract: {
+        type: String,
+        enum: ["Contrat de professionnalisation", "Contrat d'apprentissage", "Stage"]
     },
-    mySkills: {
-        type: Schema.Types.ObjectId, 
-        ref: 'MySkills'
+    time: Number,
+    availability: {
+        type: Number,
+        enum: [1, 2]
     },
-    myProjects: [{
-        type: Schema.Types.ObjectId, 
-        ref: 'MyProjects'
+    // mobility: [{type: String}],
+    avatar: String,
+    banner: String,
+    resume: String,
+    operatingSystem: String,
+    keywords: String,
+    myprojects: [{
+        title: String,
+        description: String,
+        media: String
     }],
     userID: {
         type: Schema.Types.ObjectId, 

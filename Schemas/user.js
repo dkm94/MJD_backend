@@ -8,13 +8,14 @@ let userSchema = new mongoose.Schema({
         required: 'Your email is required',
         unique: true
     },
+    //hash
     password: {
         type: String,
         required: 'The password is required'
     },
     mydashboardID: {
         type: Schema.Types.ObjectId, 
-        ref: 'MyDashboard'
+        ref: 'Dashboard'
     }
 
 });
