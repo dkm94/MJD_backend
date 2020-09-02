@@ -18,8 +18,8 @@ dashboardRoutes.post('/newProject/:id', verification, dashboardCtrl.newProject);
 // dashboardRoutes.put('/updateProfile/:id', verification, dashboardCtrl.updatemyprofile);
 // dashboardRoutes.put('/updateSkills/:id', verification, dashboardCtrl.updatemyskills, updateDashboard);
 dashboardRoutes.put('/updateDashboard/:id', verification, dashboardCtrl.updateDashboard);
-dashboardRoutes.put('/updateProject/:id', verification, dashboardCtrl.updatemyproject, updateDashboard);
+dashboardRoutes.put('/updateProject/:id', verification, dashboardCtrl.updatemyproject);
 
-dashboardRoutes.delete('/deleteProject/id', verification, dashboardCtrl.deleteproject, updateDashboard);
+dashboardRoutes.delete('/deleteProject/id', verification, dashboardCtrl.deleteproject);
 
 module.exports = dashboardRoutes;

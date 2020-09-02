@@ -1,11 +1,10 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-let myProjects = new mongoose.Schema({
-
-    title: String,
-    description: String,
-    media: String,
+let keywordsSchema = new mongoose.Schema({
+    keywords: [{
+        type: String
+    }],
     dashboardID: {
         type: Schema.Types.ObjectId, 
         ref: 'Dashboard'
@@ -14,7 +13,6 @@ let myProjects = new mongoose.Schema({
         type: Schema.Types.ObjectId, 
         ref: 'User'
     }
+})
 
-});
-
-module.exports = mongoose.model('Myprojects', myProjects);
+module.exports = mongoose.model('Keywords', keywordsSchema);

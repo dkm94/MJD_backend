@@ -5,25 +5,33 @@ let myDashboardSchema = new mongoose.Schema({
 
     name: String,
     job: String,
-    contract: {
-        type: String,
-        enum: ["Contrat de professionnalisation", "Contrat d'apprentissage", "Stage"]
-    },
+    contractID: [{
+            type: Schema.Types.ObjectId, 
+            ref: 'Contract'
+    }],
     time: Number,
-    availability: {
-        type: Number,
-        enum: [1, 2]
+    availabilityID: {
+        type: Schema.Types.ObjectId, 
+        ref: 'Availability'
     },
-    // mobility: [{type: String}],
+    mobilityID: [{
+        type: Schema.Types.ObjectId, 
+        ref: 'Mobility'
+    }],
     avatar: String,
     banner: String,
     resume: String,
-    operatingSystem: String,
-    keywords: String,
-    myprojects: [{
-        title: String,
-        description: String,
-        media: String
+    operatingSystemID: [{
+        type: Schema.Types.ObjectId, 
+        ref: 'Opsys'
+    }],
+    keywordsID: [{
+        type: Schema.Types.ObjectId, 
+        ref: 'Keywords'
+    }],
+    myprojectsID: [{
+        type: Schema.Types.ObjectId, 
+        ref: 'Myprojects'
     }],
     userID: {
         type: Schema.Types.ObjectId, 
