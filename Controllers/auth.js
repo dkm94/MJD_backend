@@ -27,7 +27,7 @@ exports.register = (req, res, next) => {
                 })
                 console.log(dashboard)
                 dashboard.save()
-                    .then(dashboard => res.status(200).json(user))
+                    .then(dashboard => res.status(200).json(dashboard))
                     .catch(err => res.status(400).json({ err: "Erreur création dashboard." }))
             } else 
                 res.status(400).json({ err: "Erreur création compte."})

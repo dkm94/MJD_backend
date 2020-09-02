@@ -13,7 +13,7 @@ let userSchema = new mongoose.Schema({
         type: String,
         required: 'The password is required'
     },
-    mydashboardID: {
+    dashboardID: {
         type: Schema.Types.ObjectId, 
         ref: 'Dashboard'
     }
