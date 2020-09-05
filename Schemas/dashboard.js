@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 let myDashboardSchema = new mongoose.Schema({
 
     name: String,
+    bio: String,
     job: String,
     contractID: [{
             type: Schema.Types.ObjectId, 

@@ -12,6 +12,7 @@ jwt_secret = process.env.JWT_SECRET_KEY;
 
 
 exports.register = (req, res, next) => {
+    console.log(req.body)
     let hash = bcrypt.hashSync(req.body.password, 10);
     const user = new User ({
         // ...req.body
