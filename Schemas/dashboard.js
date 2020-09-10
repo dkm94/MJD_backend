@@ -6,33 +6,30 @@ let myDashboardSchema = new mongoose.Schema({
     name: String,
     bio: String,
     job: String,
-    contractID: [{
-            type: Schema.Types.ObjectId, 
-            ref: 'Contract'
+    contract: [{
+            type: String,
+            enum: ["Contrat de professionnalisation", "Contrat d\'apprentissage", "Stage" ]
     }],
     time: Number,
-    availabilityID: {
-        type: Schema.Types.ObjectId, 
-        ref: 'Availability'
+    availability: {
+        type: Boolean
     },
-    mobilityID: [{
-        type: Schema.Types.ObjectId, 
-        ref: 'Mobility'
+    mobility: [{
+        type: String
     }],
     avatar: String,
     banner: String,
     resume: String,
-    operatingSystemID: [{
-        type: Schema.Types.ObjectId, 
-        ref: 'Opsys'
+    operatingSystem: [{
+        type: String,
+        enum: ['Windows', 'Linux', 'Mac']
     }],
-    keywordsID: [{
-        type: Schema.Types.ObjectId, 
-        ref: 'Keywords'
+    keywords: [{
+        type: String
     }],
     myprojectsID: [{
         type: Schema.Types.ObjectId, 
-        ref: 'Myprojects'
+        ref: 'MyProjects'
     }],
     userID: {
         type: Schema.Types.ObjectId, 
@@ -40,4 +37,4 @@ let myDashboardSchema = new mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('MyDashboard', myDashboardSchema);
+module.exports = mongoose.model('Dashboard', myDashboardSchema);

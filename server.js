@@ -41,10 +41,6 @@ const accountRoutes = require("./Routes/account");
 const searchRoutes = require("./Routes/search");
 const dashboardRoutes = require("./Routes/dashboard");
 
-// app.route('/').get(function(req, res) {
-//     res.send('hello world');
-// });
-
 
 app.use('/account', accountRoutes);
 app.use('/search', searchRoutes);

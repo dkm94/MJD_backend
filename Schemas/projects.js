@@ -7,7 +7,7 @@ let projectSchema = new mongoose.Schema({
     media: String,
     dashboardID: {
         type: Schema.Types.ObjectId, 
-        ref: 'Dashboard'
+        ref: 'MyDashboard'
     },
     userID: {
         type: Schema.Types.ObjectId, 
@@ -15,4 +15,4 @@ let projectSchema = new mongoose.Schema({
     }
 })
 
-module.exports = mongoose.model('Contract', projectSchema);
+module.exports = mongoose.model('MyProjects', projectSchema);

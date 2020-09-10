@@ -1,10 +1,5 @@
 const User = require("../Schemas/user"),
-Dashboard = require("../Schemas/dashboard"),
-MyProfile = require("../Schemas/dashboard/myProfile"),
-MySkills = require("../Schemas/dashboard/mySkills"),
-MyProjects = require("../Schemas/dashboard/myProjects");
-
-const dashboardRoutes = require("../Routes/dashboard");
+Dashboard = require("../Schemas/dashboard");
 
 const bcrypt = require('bcrypt'),
 jwt = require('jsonwebtoken'),
@@ -12,23 +7,21 @@ jwt_secret = process.env.JWT_SECRET_KEY;
 
 
 exports.register = (req, res, next) => {
-    console.log(req.body)
-    let hash = bcrypt.hashSync(req.body.password, 10);
-    const user = new User ({
-        // ...req.body
-        email: req.body.email,
-        password: hash
+    const dashboard = new Dashboard ({
+        ...req.body
     });
-    console.log(user)
-    user.save()
-        .then(user => {
-            if(user) {
-                const dashboard = new Dashboard ({
-                    userID: user._id
+    console.log(dashboard)
+    dashboard.save()
+        .then(dashboard => {
+            if(dashboard) {
+                let hash = bcrypt.hashSync(req.body.password, 10);
+                const user = new User ({
+                    email: req.body.email,
+                    password: hash,
+                    dashboardID: dashboard._id
                 })
-                console.log(dashboard)
-                dashboard.save()
-                    .then(dashboard => res.status(200).json(dashboard))
+                user.save()
+                    .then(user => res.status(200).json(user))
                     .catch(err => res.status(400).json({ err: "Erreur création dashboard." }))
             } else 
                 res.status(400).json({ err: "Erreur création compte."})
@@ -48,15 +41,11 @@ exports.login = (req, res, next) => {
                     .then(match => {
                         if (!match) {
                             return res.status(401).json({ error: "Mot de passe invalide."})
-                        } else 
-                            res.status(200).json({
-                                userID: user._id,
-                                token: jwt.sign(
-                                    {userID: user._id, dashboardID: user.dashboardID},
-                                    jwt_secret,
-                                    { expiresIn: "24h"}
-                                )
-                            })
+                        } else {
+                            var token = jwt.sign({ userId: user._id, dashboardId: user.dashboardID }, jwt_secret);
+                            res.status(200).json({auth: true, token: token, message: "Vous êtes connecté.e."})
+                        }
+                            
                     })
                     .catch(err => res.status(500).json({err}))
         })
