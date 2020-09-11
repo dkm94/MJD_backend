@@ -12,10 +12,10 @@ const path = require('path');
 app.use(cors());
 
 app.use(express.static(path.join(__dirname, '../front/build')));
-app.get('/*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../front/build', 'index.html'));
-    console.log('port 3000 en écoute')
-  });
+// app.get('/*', (req, res) => {
+//     res.sendFile(path.resolve(__dirname, '../front/build', 'index.html'));
+//     console.log('port 3000 en écoute')
+//   });
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');

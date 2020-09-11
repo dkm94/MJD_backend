@@ -4,7 +4,7 @@ Dashboard = require("../Schemas/dashboard");
 exports.dashboardId = (req, res, next) => {
     console.log(req)
     Dashboard.findOne({ _id: req.params.id })
-        .then(data => res.status(200).json(data))
+        .then(data => console.log(data))
         .catch(err => res.status(400).json({ err }))
 }
 
