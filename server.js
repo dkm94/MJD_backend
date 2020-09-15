@@ -12,15 +12,11 @@ const path = require('path');
 app.use(cors());
 
 app.use(express.static(path.join(__dirname, '../front/build')));
-// app.get('/*', (req, res) => {
-//     res.sendFile(path.resolve(__dirname, '../front/build', 'index.html'));
-//     console.log('port 3000 en écoute')
-//   });
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS')
   next();
 });
 
@@ -40,11 +36,14 @@ mongoose.connect('mongodb+srv://admin:FNRuSfE7TtkeScD@mjd.g140m.mongodb.net/MJD?
 const accountRoutes = require("./Routes/account");
 const searchRoutes = require("./Routes/search");
 const dashboardRoutes = require("./Routes/dashboard");
+const publicRoutes = require("./Routes/public");
 
 
 app.use('/account', accountRoutes);
 app.use('/search', searchRoutes);
-app.use('/dashboard', dashboardRoutes)
+app.use('/dashboard', dashboardRoutes);
+app.use('/public', publicRoutes);
+
 
 app.listen(port, () => {
     console.log("Server listening on port " + port);

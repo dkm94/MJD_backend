@@ -6,6 +6,7 @@ const dashboardCtrl = require("../Controllers/dashboard");
 const verification = require("../middlewares/auth");
 
 dashboardRoutes.get('/:id', verification, dashboardCtrl.dashboardId);
+dashboardRoutes.get('/projects/:id', verification, dashboardCtrl.projects);
 
 dashboardRoutes.post('/newProject/:id', verification, dashboardCtrl.newProject);
 

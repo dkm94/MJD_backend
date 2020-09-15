@@ -1,12 +1,20 @@
 const MyProjects = require("../Schemas/projects"),
 Dashboard = require("../Schemas/dashboard");
 
+//get 
 exports.dashboardId = (req, res, next) => {
-    console.log(req)
     Dashboard.findOne({ _id: req.params.id })
-        .then(data => console.log(data))
-        .catch(err => res.status(400).json({ err }))
+        .then(data => res.status(200).json(data))
+        .catch(err => res.status(400).json( err ))
 }
+
+exports.projects = (req, res, next) => {
+    MyProjects.find({ dashboardID: req.params.id })
+        .then(data => res.status(200).json(data))
+        .catch(err => res.status(400).json( err ))
+}
+
+// post
 
 exports.newProject = (req, res, next) => {
     const project = new MyProjects ({
@@ -14,10 +22,10 @@ exports.newProject = (req, res, next) => {
         dashboardID: req.params.id
     })
     project.save()
-        .then(project => {
+        .then(newProject => {
             if(project) {
                 Dashboard.updateOne({_id: req.params.id},
-                    {$push: {myProjects: project}})
+                    {$push: {myprojectsID: newProject}})
                     .then(data => res.status(200).json({ data}))
                     .catch(err => res.status(400).json({err}))
             } else
@@ -40,7 +48,7 @@ exports.updateDashboard = (req, res, next) => {
     Dashboard.updateOne({ _id: req.params.id },
         {$set: {...req.body, _id: req.params.id}})
         .then(data => res.status(200).json(data))
-        .catch(err => res.status(400).json({ err: "Une erreur est survenue."}))
+        .catch(err => res.status(400).json({ err}))
 }
 // Delete
 exports.deleteproject = (req, res, next) => {

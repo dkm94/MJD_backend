@@ -3,19 +3,19 @@ const jwt_secret = process.env.JWT_SECRET_KEY;
 
 module.exports = (req, res, next) => {
     try {
-        const token = req.headers.authorization.split(" ")[1];
-        const decodedToken = jwt.verify(token, jwt_secret);
-        const userID = decodedToken.userID;
-        const dashboardID = decodedToken.dashboardID;
-        if (req.body.userID && req.body.userID !== userID) {
-            throw "User ID invalide";
-        } else {
-            if(req.body.dashboardID && req.body.dashboardID !== dashboardID) {
-                throw "Erreur ID dashbord";
-            } else
-                next();
-        }
-    } catch (error) {
-        res.status(401).json({ error : error | "Requête non authentifée."})
+      const token = req.headers.authorization.split(' ')[1];
+      console.log(token)
+      const decodedToken = jwt.verify(token, jwt_secret);
+      console.log("decoded", decodedToken)
+      const userId = decodedToken.userId;
+      if (req.body.userId && req.body.userId !== userId) {
+        throw 'Invalid user ID';
+      } else {
+        next();
+      }
+    } catch {
+      res.status(401).json({
+        error: new Error('Invalid request!')
+      });
     }
-}
+  };
